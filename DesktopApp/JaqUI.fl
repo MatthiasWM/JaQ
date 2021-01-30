@@ -1,0 +1,300 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0400
+header_name {.h}
+code_name {.cxx}
+decl {\#include "Jaq.h"} {public global
+}
+
+decl {\#include "JQServo.h"} {public global
+}
+
+decl {\#include "JQLeg.h"} {public global
+}
+
+decl {\#include <FL/Fl_Simple_Terminal.H>} {public global
+}
+
+Function {createMainWindow()} {open
+} {
+  Fl_Window {} {
+    label {Jaq - Just Another Quadruped} open
+    xywh {798 195 650 780} type Double visible
+  } {
+    Fl_Button {} {
+      label Open
+      callback openComCB
+      xywh {180 10 75 25}
+    }
+    Fl_Input wComName {
+      label {Com Port:}
+      xywh {80 10 100 25}
+    }
+    Fl_Button {} {
+      label Test
+      callback testComCB
+      xywh {255 10 75 25}
+    }
+    Fl_Button {} {
+      label Close
+      callback closeComCB
+      xywh {330 10 75 25}
+    }
+    Fl_Text_Display wTerminal {
+      xywh {5 700 635 75} color 32 selection_color 10 labelfont 5 labelsize 11 textfont 5 textsize 11 textcolor 2
+      class Fl_Simple_Terminal
+    }
+    Fl_Button {} {
+      label Power
+      callback servosPowerOnCB
+      xywh {405 10 75 25}
+    }
+    Fl_Button {} {
+      label {Power Off}
+      callback servosPowerOffCB
+      xywh {480 10 75 25}
+    }
+    Fl_Tabs {} {open
+      xywh {0 45 650 295}
+    } {
+      Fl_Group {} {
+        label RAW open selected
+        xywh {0 70 650 270}
+      } {
+        Fl_Value_Slider {wRawAngle[0]} {
+          label Hip
+          user_data FL_HIP user_data_type long
+          callback setRawAngleCB
+          xywh {50 90 270 20} type Horizontal labelsize 12 align 4 maximum 4095 step 1
+        }
+        Fl_Value_Slider {wRawAngle[1]} {
+          label Knee
+          user_data FL_KNEE user_data_type long
+          callback setRawAngleCB
+          xywh {50 110 270 20} type Horizontal labelsize 12 align 4 maximum 4095 step 1
+        }
+        Fl_Value_Slider {wRawAngle[2]} {
+          label Ankle
+          user_data FL_ANKLE user_data_type long
+          callback setRawAngleCB
+          xywh {50 130 270 20} type Horizontal labelsize 12 align 4 maximum 4095 step 1
+        }
+        Fl_Value_Slider {wRawAngle[3]} {
+          label Hip
+          user_data FR_HIP user_data_type long
+          callback setRawAngleCB
+          xywh {360 90 270 20} type Horizontal labelsize 12 align 4 maximum 4095 step 1
+        }
+        Fl_Value_Slider {wRawAngle[4]} {
+          label Knee
+          user_data FR_KNEE user_data_type long
+          callback setRawAngleCB
+          xywh {360 110 270 20} type Horizontal labelsize 12 align 4 maximum 4095 step 1
+        }
+        Fl_Value_Slider {wRawAngle[5]} {
+          label Ankle
+          user_data FR_ANKLE user_data_type long
+          callback setRawAngleCB
+          xywh {360 130 270 20} type Horizontal labelsize 12 align 4 maximum 4095 step 1
+        }
+        Fl_Value_Slider {wRawAngle[6]} {
+          label Hip
+          user_data BL_HIP user_data_type long
+          callback setRawAngleCB
+          xywh {50 170 270 20} type Horizontal labelsize 12 align 4 maximum 4095 step 1
+        }
+        Fl_Value_Slider {wRawAngle[7]} {
+          label Knee
+          user_data BL_KNEE user_data_type long
+          callback setRawAngleCB
+          xywh {50 190 270 20} type Horizontal labelsize 12 align 4 maximum 4095 step 1
+        }
+        Fl_Value_Slider {wRawAngle[8]} {
+          label Ankle
+          user_data BL_ANKLE user_data_type long
+          callback setRawAngleCB
+          xywh {50 210 270 20} type Horizontal labelsize 12 align 4 maximum 4095 step 1
+        }
+        Fl_Value_Slider {wRawAngle[9]} {
+          label Hip
+          user_data BR_HIP user_data_type long
+          callback setRawAngleCB
+          xywh {360 170 270 20} type Horizontal labelsize 12 align 4 maximum 4095 step 1
+        }
+        Fl_Value_Slider {wRawAngle[10]} {
+          label Knee
+          user_data BR_KNEE user_data_type long
+          callback setRawAngleCB
+          xywh {360 190 270 20} type Horizontal labelsize 12 align 4 maximum 4095 step 1
+        }
+        Fl_Value_Slider {wRawAngle[11]} {
+          label Ankle
+          user_data BR_ANKLE user_data_type long
+          callback setRawAngleCB
+          xywh {360 210 270 20} type Horizontal labelsize 12 align 4 maximum 4095 step 1
+        }
+        Fl_Button {} {
+          label Calibrate
+          callback calibrateCB
+          xywh {525 250 105 25}
+        }
+      }
+      Fl_Group {} {
+        label Angles open
+        xywh {0 70 650 270} hide
+      } {}
+      Fl_Group {} {
+        label Position open
+        xywh {0 70 650 270} hide
+      } {}
+    }
+    Fl_Value_Slider {wAngle[0]} {
+      label Hip
+      user_data FL_HIP user_data_type long
+      callback setAngleCB
+      xywh {55 355 270 20} type Horizontal labelsize 12 align 4 minimum -90 maximum 90 step 1
+    }
+    Fl_Value_Slider {wAngle[1]} {
+      label Knee
+      user_data FL_KNEE user_data_type long
+      callback setAngleCB
+      xywh {55 375 270 20} type Horizontal labelsize 12 align 4 minimum -180 maximum 90 step 1 value -45
+    }
+    Fl_Value_Slider {wAngle[2]} {
+      label Ankle
+      user_data FL_ANKLE user_data_type long
+      callback setAngleCB
+      xywh {55 395 270 20} type Horizontal labelsize 12 align 4 maximum 163 step 1 value 90
+    }
+    Fl_Value_Slider {wAngle[3]} {
+      label Hip
+      user_data FR_HIP user_data_type long
+      callback setAngleCB
+      xywh {365 355 270 20} type Horizontal labelsize 12 align 4 minimum -90 maximum 90 step 1
+    }
+    Fl_Value_Slider {wAngle[4]} {
+      label Knee
+      user_data FR_KNEE user_data_type long
+      callback setAngleCB
+      xywh {365 375 270 20} type Horizontal labelsize 12 align 4 minimum -180 maximum 90 step 1 value -45
+    }
+    Fl_Value_Slider {wAngle[5]} {
+      label Ankle
+      user_data FR_ANKLE user_data_type long
+      callback setAngleCB
+      xywh {365 395 270 20} type Horizontal labelsize 12 align 4 maximum 163 step 1 value 90
+    }
+    Fl_Value_Slider {wAngle[6]} {
+      label Hip
+      user_data BL_HIP user_data_type long
+      callback setAngleCB
+      xywh {55 435 270 20} type Horizontal labelsize 12 align 4 minimum -90 maximum 90 step 1
+    }
+    Fl_Value_Slider {wAngle[7]} {
+      label Knee
+      user_data BL_KNEE user_data_type long
+      callback setAngleCB
+      xywh {55 455 270 20} type Horizontal labelsize 12 align 4 minimum -180 maximum 90 step 1 value -45
+    }
+    Fl_Value_Slider {wAngle[8]} {
+      label Ankle
+      user_data BL_ANKLE user_data_type long
+      callback setAngleCB
+      xywh {55 475 270 20} type Horizontal labelsize 12 align 4 maximum 163 step 1 value 90
+    }
+    Fl_Value_Slider {wAngle[9]} {
+      label Hip
+      user_data BR_HIP user_data_type long
+      callback setAngleCB
+      xywh {365 435 270 20} type Horizontal labelsize 12 align 4 minimum -90 maximum 90 step 1
+    }
+    Fl_Value_Slider {wAngle[10]} {
+      label Knee
+      user_data BR_KNEE user_data_type long
+      callback setAngleCB
+      xywh {365 455 270 20} type Horizontal labelsize 12 align 4 minimum -180 maximum 90 step 1 value -45
+    }
+    Fl_Value_Slider {wAngle[11]} {
+      label Ankle
+      user_data BR_ANKLE user_data_type long
+      callback setAngleCB
+      xywh {365 475 270 20} type Horizontal labelsize 12 align 4 maximum 163 step 1 value 90
+    }
+    Fl_Value_Slider {wPosition[0]} {
+      label X
+      user_data 0 user_data_type long
+      callback setPositionCB
+      xywh {55 510 270 20} type Horizontal labelsize 12 align 4 minimum -250 maximum 250 step 1
+    }
+    Fl_Value_Slider {wPosition[1]} {
+      label Y
+      user_data 1 user_data_type long
+      callback setPositionCB
+      xywh {55 530 270 20} type Horizontal labelsize 12 align 4 minimum -250 maximum 250 step 1
+    }
+    Fl_Value_Slider {wPosition[2]} {
+      label Z
+      user_data 2 user_data_type long
+      callback setPositionCB
+      xywh {55 550 270 20} type Horizontal labelsize 12 align 4 minimum -250 maximum 250 step 1 value -157
+    }
+    Fl_Value_Slider {wPosition[3]} {
+      label X
+      user_data 3 user_data_type long
+      callback setPositionCB
+      xywh {365 510 270 20} type Horizontal labelsize 12 align 4 minimum -250 maximum 250 step 1
+    }
+    Fl_Value_Slider {wPosition[4]} {
+      label Y
+      user_data 4 user_data_type long
+      callback setPositionCB
+      xywh {365 530 270 20} type Horizontal labelsize 12 align 4 minimum -250 maximum 250 step 1
+    }
+    Fl_Value_Slider {wPosition[5]} {
+      label Z
+      user_data 5 user_data_type long
+      callback setPositionCB
+      xywh {365 550 270 20} type Horizontal labelsize 12 align 4 minimum -250 maximum 250 step 1 value -157
+    }
+    Fl_Value_Slider {wPosition[6]} {
+      label X
+      user_data 6 user_data_type long
+      callback setPositionCB
+      xywh {55 590 270 20} type Horizontal labelsize 12 align 4 minimum -250 maximum 250 step 1
+    }
+    Fl_Value_Slider {wPosition[7]} {
+      label Y
+      user_data 7 user_data_type long
+      callback setPositionCB
+      xywh {55 610 270 20} type Horizontal labelsize 12 align 4 minimum -250 maximum 250 step 1
+    }
+    Fl_Value_Slider {wPosition[8]} {
+      label Z
+      user_data 8 user_data_type long
+      callback setPositionCB
+      xywh {55 630 270 20} type Horizontal labelsize 12 align 4 minimum -250 maximum 250 step 1 value -157
+    }
+    Fl_Value_Slider {wPosition[9]} {
+      label X
+      user_data 9 user_data_type long
+      callback setPositionCB
+      xywh {365 590 270 20} type Horizontal labelsize 12 align 4 minimum -250 maximum 250 step 1
+    }
+    Fl_Value_Slider {wPosition[10]} {
+      label Y
+      user_data 10 user_data_type long
+      callback setPositionCB
+      xywh {365 610 270 20} type Horizontal labelsize 12 align 4 minimum -250 maximum 250 step 1
+    }
+    Fl_Value_Slider {wPosition[11]} {
+      label Z
+      user_data 11 user_data_type long
+      callback setPositionCB
+      xywh {365 630 270 20} type Horizontal labelsize 12 align 4 minimum -250 maximum 250 step 1 value -157
+    }
+    Fl_Value_Slider wAllZ {
+      label Z
+      callback setAllZCB
+      xywh {365 670 270 20} type Horizontal labelsize 12 align 4 minimum -250 maximum 250 step 1 value -157
+    }
+  }
+}
